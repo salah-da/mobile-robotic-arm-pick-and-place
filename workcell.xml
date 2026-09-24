@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="WBC_06_professional_pick_place">
+  <compiler angle="radian" autolimits="true" />
+  <option timestep=".002" gravity="0 0 -9.81" integrator="implicitfast" solver="Newton" iterations="80" tolerance="1e-9" cone="elliptic" />
+  <visual>
+    <global offwidth="1920" offheight="1080" azimuth="140" elevation="-25" />
+    <quality shadowsize="4096" offsamples="4" />
+    <headlight diffuse=".5 .5 .5" ambient=".25 .25 .25" specular=".2 .2 .2" />
+    <map znear="0.01" zfar="30" force="0.02" />
+  </visual>
+  <statistic center="1.0 0.0 0.55" extent="3.8" />
+  <default>
+    <geom solref=".008 1" solimp=".95 .99 .001" friction=".8 .01 .0002" condim="4" />
+    <default class="visual">
+      <geom contype="0" conaffinity="0" group="2" mass="0" />
+    </default>
+    <default class="collision">
+      <geom group="3" />
+    </default>
+    <default class="arm">
+      <joint type="hinge" damping=".35" armature=".035" />
+    </default>
+  </default>
+  <asset>
+    <material name="ivory" rgba=".83 .87 .86 1" specular="0.45" shininess="0.35" />
+    <material name="orange" rgba=".94 .39 .09 1" specular="0.4" shininess="0.35" />
+    <material name="graphite" rgba=".065 .095 .12 1" specular="0.3" shininess="0.35" />
+    <material name="steel" rgba=".43 .49 .52 1" specular="0.65" shininess="0.35" />
+    <material name="rubber" rgba=".025 .03 .035 1" specular="0.02" shininess="0.35" />
+    <material name="cyan" rgba=".04 .65 .78 1" specular="0.4" shininess="0.35" />
+    <material name="yellow" rgba=".95 .70 .10 1" specular="0.3" shininess="0.35" />
+    <material name="table" rgba=".58 .63 .65 1" specular="0.4" shininess="0.35" />
+    <material name="part" rgba=".21 .53 .66 1" specular="0.5" shininess="0.35" />
+    <texture name="floor_tex" type="2d" builtin="checker" rgb1=".30 .34 .36" rgb2=".32 .36 .38" width="512" height="512" />
+    <material name="floor_mat" texture="floor_tex" texrepeat="8 8" reflectance=".08" />
+    <mesh name="shell" vertex="-0.315 -0.2 -0.07999999999999999 -0.315 -0.2 0.07999999999999999 -0.315 0.2 -0.07999999999999999 -0.315 0.2 0.07999999999999999 -0.29 -0.225 -0.07999999999999999 -0.29 -0.225 0.07999999999999999 -0.29 -0.2 -0.105 -0.29 -0.2 0.105 -0.29 0.2 -0.105 -0.29 0.2 0.105 -0.29 0.225 -0.07999999999999999 -0.29 0.225 0.07999999999999999 0.29 -0.225 -0.07999999999999999 0.29 -0.225 0.07999999999999999 0.29 -0.2 -0.105 0.29 -0.2 0.105 0.29 0.2 -0.105 0.29 0.2 0.105 0.29 0.225 -0.07999999999999999 0.29 0.225 0.07999999999999999 0.315 -0.2 -0.07999999999999999 0.315 -0.2 0.07999999999999999 0.315 0.2 -0.07999999999999999 0.315 0.2 0.07999999999999999" face="4 0 6 19 17 23 9 11 3 22 16 18 8 2 10 13 21 15 5 7 1 12 14 20 2 0 1 2 1 3 11 2 3 11 10 2 19 10 11 19 18 10 9 3 1 9 1 7 9 7 15 9 15 17 9 19 11 9 17 19 21 17 15 21 23 17 22 23 21 22 21 20 22 20 14 22 14 16 22 18 19 22 19 23 8 10 18 8 18 16 8 16 14 8 14 6 8 0 2 8 6 0 5 1 0 5 0 4 5 15 7 5 13 15 12 20 21 12 21 13 12 6 14 12 4 6 12 5 4 12 13 5" />
+    <mesh name="upper" vertex="-0.145 -0.028999999999999998 -0.034 -0.145 -0.028999999999999998 0.034 -0.145 0.028999999999999998 -0.034 -0.145 0.028999999999999998 0.034 -0.13099999999999998 -0.043 -0.034 -0.13099999999999998 -0.043 0.034 -0.13099999999999998 -0.028999999999999998 -0.048 -0.13099999999999998 -0.028999999999999998 0.048 -0.13099999999999998 0.028999999999999998 -0.048 -0.13099999999999998 0.028999999999999998 0.048 -0.13099999999999998 0.043 -0.034 -0.13099999999999998 0.043 0.034 0.13099999999999998 -0.043 -0.034 0.13099999999999998 -0.043 0.034 0.13099999999999998 -0.028999999999999998 -0.048 0.13099999999999998 -0.028999999999999998 0.048 0.13099999999999998 0.028999999999999998 -0.048 0.13099999999999998 0.028999999999999998 0.048 0.13099999999999998 0.043 -0.034 0.13099999999999998 0.043 0.034 0.145 -0.028999999999999998 -0.034 0.145 -0.028999999999999998 0.034 0.145 0.028999999999999998 -0.034 0.145 0.028999999999999998 0.034" face="4 0 6 9 11 3 22 16 18 8 2 10 17 23 19 13 21 15 5 7 1 12 14 20 2 0 1 2 1 3 11 19 18 11 18 10 11 2 3 11 10 2 9 3 1 9 1 7 22 14 16 22 20 14 22 18 19 22 19 23 8 10 18 8 18 16 8 16 14 8 14 6 8 0 2 8 6 0 21 20 22 21 22 23 17 21 23 17 15 21 17 19 11 17 11 9 17 9 7 17 7 15 5 1 0 5 0 4 5 15 7 5 13 15 12 20 21 12 21 13 12 6 14 12 4 6 12 5 4 12 13 5" />
+    <mesh name="forearm" vertex="-0.125 -0.024000000000000004 -0.027 -0.125 -0.024000000000000004 0.027 -0.125 0.024000000000000004 -0.027 -0.125 0.024000000000000004 0.027 -0.114 -0.035 -0.027 -0.114 -0.035 0.027 -0.114 -0.024000000000000004 -0.038 -0.114 -0.024000000000000004 0.038 -0.114 0.024000000000000004 -0.038 -0.114 0.024000000000000004 0.038 -0.114 0.035 -0.027 -0.114 0.035 0.027 0.114 -0.035 -0.027 0.114 -0.035 0.027 0.114 -0.024000000000000004 -0.038 0.114 -0.024000000000000004 0.038 0.114 0.024000000000000004 -0.038 0.114 0.024000000000000004 0.038 0.114 0.035 -0.027 0.114 0.035 0.027 0.125 -0.024000000000000004 -0.027 0.125 -0.024000000000000004 0.027 0.125 0.024000000000000004 -0.027 0.125 0.024000000000000004 0.027" face="4 0 6 9 11 3 22 16 18 8 2 10 17 23 19 13 21 15 5 7 1 12 14 20 2 0 1 2 1 3 11 19 18 11 18 10 11 2 3 11 10 2 9 3 1 9 1 7 22 14 16 22 20 14 22 18 19 22 19 23 8 10 18 8 18 16 8 16 14 8 14 6 8 0 2 8 6 0 21 20 22 21 22 23 17 21 23 17 15 21 17 19 11 17 11 9 17 9 7 17 7 15 5 1 0 5 0 4 5 15 7 5 13 15 12 20 21 12 21 13 12 6 14 12 4 6 12 5 4 12 13 5" />
+    <mesh name="wrist" vertex="-0.05 -0.026999999999999996 -0.027999999999999997 -0.05 -0.026999999999999996 0.027999999999999997 -0.05 0.026999999999999996 -0.027999999999999997 -0.05 0.026999999999999996 0.027999999999999997 -0.04 -0.037 -0.027999999999999997 -0.04 -0.037 0.027999999999999997 -0.04 -0.026999999999999996 -0.038 -0.04 -0.026999999999999996 0.038 -0.04 0.026999999999999996 -0.038 -0.04 0.026999999999999996 0.038 -0.04 0.037 -0.027999999999999997 -0.04 0.037 0.027999999999999997 0.04 -0.037 -0.027999999999999997 0.04 -0.037 0.027999999999999997 0.04 -0.026999999999999996 -0.038 0.04 -0.026999999999999996 0.038 0.04 0.026999999999999996 -0.038 0.04 0.026999999999999996 0.038 0.04 0.037 -0.027999999999999997 0.04 0.037 0.027999999999999997 0.05 -0.026999999999999996 -0.027999999999999997 0.05 -0.026999999999999996 0.027999999999999997 0.05 0.026999999999999996 -0.027999999999999997 0.05 0.026999999999999996 0.027999999999999997" face="4 0 6 9 11 3 22 16 18 8 2 10 17 23 19 13 21 15 5 7 1 12 14 20 2 0 1 2 1 3 11 19 18 11 18 10 11 2 3 11 10 2 9 3 1 9 1 7 22 14 16 22 20 14 22 18 19 22 19 23 8 10 18 8 18 16 8 16 14 8 14 6 8 0 2 8 6 0 21 20 22 21 22 23 17 21 23 17 15 21 17 19 11 17 11 9 17 9 7 17 7 15 5 1 0 5 0 4 5 15 7 5 13 15 12 20 21 12 21 13 12 6 14 12 4 6 12 5 4 12 13 5" />
+    <mesh name="gripper" vertex="-0.03 -0.060000000000000005 -0.027000000000000003 -0.03 -0.060000000000000005 0.027000000000000003 -0.03 0.060000000000000005 -0.027000000000000003 -0.03 0.060000000000000005 0.027000000000000003 -0.024 -0.066 -0.027000000000000003 -0.024 -0.066 0.027000000000000003 -0.024 -0.060000000000000005 -0.033 -0.024 -0.060000000000000005 0.033 -0.024 0.060000000000000005 -0.033 -0.024 0.060000000000000005 0.033 -0.024 0.066 -0.027000000000000003 -0.024 0.066 0.027000000000000003 0.024 -0.066 -0.027000000000000003 0.024 -0.066 0.027000000000000003 0.024 -0.060000000000000005 -0.033 0.024 -0.060000000000000005 0.033 0.024 0.060000000000000005 -0.033 0.024 0.060000000000000005 0.033 0.024 0.066 -0.027000000000000003 0.024 0.066 0.027000000000000003 0.03 -0.060000000000000005 -0.027000000000000003 0.03 -0.060000000000000005 0.027000000000000003 0.03 0.060000000000000005 -0.027000000000000003 0.03 0.060000000000000005 0.027000000000000003" face="9 11 3 4 0 6 16 18 22 12 14 20 19 17 23 8 2 10 5 7 1 13 21 15 21 20 22 21 22 23 2 0 1 2 1 3 11 2 3 11 10 2 9 1 7 9 3 1 17 21 23 17 15 21 17 9 7 17 7 15 16 22 20 16 20 14 12 6 14 12 4 6 19 9 17 19 11 9 19 23 22 19 22 18 19 10 11 19 18 10 8 10 18 8 18 16 8 0 2 8 6 0 8 16 14 8 14 6 5 1 0 5 0 4 13 15 7 13 7 5 13 20 21 13 12 20 13 4 12 13 5 4" />
+    <material name="robot_badge" rgba=".05 .25 .30 1" />
+    <material name="pick_sign" rgba=".05 .25 .30 1" />
+    <material name="place_sign" rgba=".05 .25 .30 1" />
+  </asset>
+  <worldbody>
+    <light pos="0 -2 4" dir=".2 .4 -1" diffuse=".85 .85 .82" castshadow="true" />
+    <light pos="3 2 3" dir="-.5 -.2 -1" diffuse=".55 .62 .68" castshadow="false" />
+    <geom name="floor" type="plane" size="6 6 .1" material="floor_mat" friction="1.1 .005 .0001" />
+    <camera name="overview" pos="3.6 -4.3 2.9" xyaxes=".87 .50 0 -.22 .38 .90" fovy="43" />
+    <camera name="workcell" pos=".3 -3.1 1.9" xyaxes="1 0 0 0 .42 .91" fovy="48" />
+    <camera name="pick_detail" pos="1.9 -.65 1.45" xyaxes=".70 .71 0 -.40 .39 .83" fovy="43" />
+    <geom name="lane_0" type="box" size="1.25 0.012 0.001" pos="0.85 -0.9 0.002" material="yellow" class="visual" />
+    <geom name="lane_1" type="box" size="1.25 0.012 0.001" pos="0.85 0.98 0.002" material="yellow" class="visual" />
+    <geom name="lane_2" type="box" size="0.012 0.94 0.001" pos="-0.4 0.04 0.002" material="yellow" class="visual" />
+    <geom name="lane_3" type="box" size="0.012 0.94 0.001" pos="2.1 0.04 0.002" material="yellow" class="visual" />
+    <geom name="dash_-0.1" type="box" size="0.055 0.008 0.001" pos="-0.1 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_0.1" type="box" size="0.055 0.008 0.001" pos="0.1 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_0.3" type="box" size="0.055 0.008 0.001" pos="0.30000000000000004 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_0.5" type="box" size="0.055 0.008 0.001" pos="0.5000000000000001 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_0.7" type="box" size="0.055 0.008 0.001" pos="0.7000000000000001 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_0.9" type="box" size="0.055 0.008 0.001" pos="0.9 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_1.1" type="box" size="0.055 0.008 0.001" pos="1.1 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_1.3" type="box" size="0.055 0.008 0.001" pos="1.3 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_1.5" type="box" size="0.055 0.008 0.001" pos="1.5 -0.78 0.003" material="ivory" class="visual" />
+    <geom name="dash_1.7" type="box" size="0.055 0.008 0.001" pos="1.7 -0.78 0.003" material="ivory" class="visual" />
+    <body name="table_pick" pos="1.1 0.38 0">
+      <geom name="pick_top" type="box" size="0.24 0.23 0.022" pos="0 0 0.628" material="table" class="collision" />
+      <geom name="pick_leg_0" type="box" size="0.023 0.023 0.285" pos="-0.19 -0.18 0.31" material="graphite" class="collision" />
+      <geom name="pick_foot_0" type="cylinder" size="0.037 0.012" pos="-0.19 -0.18 0.018" material="rubber" class="collision" />
+      <geom name="pick_leg_1" type="box" size="0.023 0.023 0.285" pos="-0.19 0.18 0.31" material="graphite" class="collision" />
+      <geom name="pick_foot_1" type="cylinder" size="0.037 0.012" pos="-0.19 0.18 0.018" material="rubber" class="collision" />
+      <geom name="pick_leg_2" type="box" size="0.023 0.023 0.285" pos="0.19 -0.18 0.31" material="graphite" class="collision" />
+      <geom name="pick_foot_2" type="cylinder" size="0.037 0.012" pos="0.19 -0.18 0.018" material="rubber" class="collision" />
+      <geom name="pick_leg_3" type="box" size="0.023 0.023 0.285" pos="0.19 0.18 0.31" material="graphite" class="collision" />
+      <geom name="pick_foot_3" type="cylinder" size="0.037 0.012" pos="0.19 0.18 0.018" material="rubber" class="collision" />
+      <geom name="pick_brace" type="box" size="0.2 0.018 0.025" pos="0 0.18 0.17" material="steel" class="collision" />
+      <geom name="pick_panel" type="box" size="0.205 0.004 0.045" pos="0 -0.235 0.555" material="pick_sign" class="visual" />
+      <geom name="pick_nest" type="box" size="0.07 0.07 0.0015" pos="0 0 0.6515" material="graphite" class="collision" />
+      <geom name="pick_mark_0" type="box" size="0.008 0.03 0.001" pos="-0.08 0 0.652" material="cyan" class="visual" />
+      <geom name="pick_mark_1" type="box" size="0.008 0.03 0.001" pos="0.08 0 0.652" material="cyan" class="visual" />
+      <geom name="pick_mark_2" type="box" size="0.03 0.008 0.001" pos="0 -0.08 0.652" material="cyan" class="visual" />
+      <geom name="pick_mark_3" type="box" size="0.03 0.008 0.001" pos="0 0.08 0.652" material="cyan" class="visual" />
+    </body>
+    <body name="table_place" pos="1.9 -0.48 0">
+      <geom name="place_top" type="box" size="0.24 0.23 0.022" pos="0 0 0.628" material="table" class="collision" />
+      <geom name="place_leg_0" type="box" size="0.023 0.023 0.285" pos="-0.19 -0.18 0.31" material="graphite" class="collision" />
+      <geom name="place_foot_0" type="cylinder" size="0.037 0.012" pos="-0.19 -0.18 0.018" material="rubber" class="collision" />
+      <geom name="place_leg_1" type="box" size="0.023 0.023 0.285" pos="-0.19 0.18 0.31" material="graphite" class="collision" />
+      <geom name="place_foot_1" type="cylinder" size="0.037 0.012" pos="-0.19 0.18 0.018" material="rubber" class="collision" />
+      <geom name="place_leg_2" type="box" size="0.023 0.023 0.285" pos="0.19 -0.18 0.31" material="graphite" class="collision" />
+      <geom name="place_foot_2" type="cylinder" size="0.037 0.012" pos="0.19 -0.18 0.018" material="rubber" class="collision" />
+      <geom name="place_leg_3" type="box" size="0.023 0.023 0.285" pos="0.19 0.18 0.31" material="graphite" class="collision" />
+      <geom name="place_foot_3" type="cylinder" size="0.037 0.012" pos="0.19 0.18 0.018" material="rubber" class="collision" />
+      <geom name="place_brace" type="box" size="0.2 0.018 0.025" pos="0 0.18 0.17" material="steel" class="collision" />
+      <geom name="place_panel" type="box" size="0.205 0.004 0.045" pos="0 -0.235 0.555" material="place_sign" class="visual" />
+      <geom name="place_nest" type="box" size="0.07 0.07 0.0015" pos="0 0 0.6515" material="graphite" class="collision" />
+      <geom name="place_mark_0" type="box" size="0.008 0.03 0.001" pos="-0.08 0 0.652" material="cyan" class="visual" />
+      <geom name="place_mark_1" type="box" size="0.008 0.03 0.001" pos="0.08 0 0.652" material="cyan" class="visual" />
+      <geom name="place_mark_2" type="box" size="0.03 0.008 0.001" pos="0 -0.08 0.652" material="cyan" class="visual" />
+      <geom name="place_mark_3" type="box" size="0.03 0.008 0.001" pos="0 0.08 0.652" material="cyan" class="visual" />
+    </body>
+    <geom name="backwall" type="box" size="2.5 0.055 1.2" pos="1.0 1.6 1.2" material="ivory" class="visual" />
+    <geom name="shelf_0.25" type="box" size="0.58 0.2 0.02" pos="-0.25 1.24 0.25" material="steel" class="visual" />
+    <geom name="shelf_0.7" type="box" size="0.58 0.2 0.02" pos="-0.25 1.24 0.7" material="steel" class="visual" />
+    <geom name="shelf_1.15" type="box" size="0.58 0.2 0.02" pos="-0.25 1.24 1.15" material="steel" class="visual" />
+    <geom name="rack_-0.81" type="box" size="0.025 0.025 0.7" pos="-0.81 1.39 0.7" material="graphite" class="visual" />
+    <geom name="rack_0.31" type="box" size="0.025 0.025 0.7" pos="0.31 1.39 0.7" material="graphite" class="visual" />
+    <geom name="tote_0" type="box" size="0.11 0.14 0.07" pos="-0.67 1.2 0.8" material="cyan" class="visual" />
+    <geom name="tote_1" type="box" size="0.11 0.14 0.07" pos="-0.38000000000000006 1.2 0.8" material="cyan" class="visual" />
+    <geom name="tote_2" type="box" size="0.11 0.14 0.07" pos="-0.09000000000000008 1.2 0.8" material="cyan" class="visual" />
+    <geom name="tote_3" type="box" size="0.11 0.14 0.07" pos="0.19999999999999984 1.2 0.8" material="cyan" class="visual" />
+    <body name="pick_object" pos="1.10 .38 .689">
+      <freejoint name="object_free" />
+      <geom name="part_collision" type="box" size="0.035 0.035 0.032" pos="0 0 0" material="part" class="collision" mass="0.16" friction="1.2 .01 .0001" />
+      <geom name="part_top_insert" type="box" size="0.025 0.025 0.001" pos="0 0 0.033" material="steel" class="visual" />
+    </body>
+    <body name="base_link" pos="0 0 .150">
+      <freejoint name="base_free" />
+      <inertial pos="0 0 0" mass="38" diaginertia=".90 1.40 1.90" />
+      <geom name="chassis_collision" type="box" size="0.29 0.2 0.08" pos="0 0 0.025" material="graphite" class="collision" />
+      <geom name="chassis_shell" type="mesh" mesh="shell" pos="0 0 .025" material="ivory" class="visual" />
+      <geom name="lower_bumper" type="box" size="0.317 0.235 0.024" pos="0 0 -0.057" material="rubber" class="visual" />
+      <geom name="top_deck" type="box" size="0.265 0.205 0.011" pos="0 0 0.139" material="graphite" class="visual" />
+      <geom name="front_led" type="box" size="0.003 0.16 0.008" pos="0.317 0 0.039" material="cyan" class="visual" />
+      <geom name="badge" type="box" size="0.12 0.003 0.031" pos="0 -0.228 0.04" material="robot_badge" class="visual" />
+      <geom name="scanner_body" type="cylinder" size="0.052 0.03" pos="0.24 0 0.163" material="graphite" class="visual" />
+      <geom name="scanner_glass" type="cylinder" size="0.053 0.009" pos="0.24 0 0.174" material="cyan" class="visual" />
+      <geom name="estop_ring" type="cylinder" size="0.022 0.01" pos="-0.22 -0.15 0.16" material="yellow" class="visual" />
+      <geom name="estop" type="cylinder" size="0.015 0.015" pos="-0.22 -0.15 0.18" material="orange" class="visual" />
+      <geom name="caster_front" type="sphere" size="0.035" pos="0.24 0 -0.115" material="rubber" class="collision" />
+      <geom name="caster_rear" type="sphere" size="0.035" pos="-0.24 0 -0.115" material="rubber" class="collision" />
+      <body name="wheel_left" pos="0 0.25 -0.05">
+        <joint name="wheel_left_j" type="hinge" axis="0 1 0" damping="0.08" armature="0.025" />
+        <geom name="tire_left" type="ellipsoid" size="0.1 0.1 0.032" pos="0 0 0" material="rubber" class="collision" euler="1.57079632679 0 0" mass="1.2" friction="1.3 .005 .0001" />
+        <geom name="hub_left" type="cylinder" size="0.054 0.034" pos="0 0 0" material="steel" class="visual" euler="1.57079632679 0 0" />
+        <geom name="wheel_left_bolt0" type="sphere" size="0.007" pos="0.038 0.036 0.0" material="graphite" class="visual" />
+        <geom name="wheel_left_bolt1" type="sphere" size="0.007" pos="0.019000000000000003 0.036 0.03290896534380867" material="graphite" class="visual" />
+        <geom name="wheel_left_bolt2" type="sphere" size="0.007" pos="-0.018999999999999993 0.036 0.03290896534380867" material="graphite" class="visual" />
+        <geom name="wheel_left_bolt3" type="sphere" size="0.007" pos="-0.038 0.036 4.653657836759942e-18" material="graphite" class="visual" />
+        <geom name="wheel_left_bolt4" type="sphere" size="0.007" pos="-0.019000000000000017 0.036 -0.03290896534380866" material="graphite" class="visual" />
+        <geom name="wheel_left_bolt5" type="sphere" size="0.007" pos="0.019000000000000003 0.036 -0.03290896534380867" material="graphite" class="visual" />
+      </body>
+      <body name="wheel_right" pos="0 -0.25 -0.05">
+        <joint name="wheel_right_j" type="hinge" axis="0 1 0" damping="0.08" armature="0.025" />
+        <geom name="tire_right" type="ellipsoid" size="0.1 0.1 0.032" pos="0 0 0" material="rubber" class="collision" euler="1.57079632679 0 0" mass="1.2" friction="1.3 .005 .0001" />
+        <geom name="hub_right" type="cylinder" size="0.054 0.034" pos="0 0 0" material="steel" class="visual" euler="1.57079632679 0 0" />
+        <geom name="wheel_right_bolt0" type="sphere" size="0.007" pos="0.038 -0.036 0.0" material="graphite" class="visual" />
+        <geom name="wheel_right_bolt1" type="sphere" size="0.007" pos="0.019000000000000003 -0.036 0.03290896534380867" material="graphite" class="visual" />
+        <geom name="wheel_right_bolt2" type="sphere" size="0.007" pos="-0.018999999999999993 -0.036 0.03290896534380867" material="graphite" class="visual" />
+        <geom name="wheel_right_bolt3" type="sphere" size="0.007" pos="-0.038 -0.036 4.653657836759942e-18" material="graphite" class="visual" />
+        <geom name="wheel_right_bolt4" type="sphere" size="0.007" pos="-0.019000000000000017 -0.036 -0.03290896534380866" material="graphite" class="visual" />
+        <geom name="wheel_right_bolt5" type="sphere" size="0.007" pos="0.019000000000000003 -0.036 -0.03290896534380867" material="graphite" class="visual" />
+      </body>
+      <body name="arm_mount" pos=".04 0 .145">
+        <geom name="pedestal" type="cylinder" size="0.09 0.135" pos="0 0 0.135" material="graphite" class="collision" mass="2.4" />
+        <geom name="pedestal_band" type="cylinder" size="0.091 0.012" pos="0 0 0.255" material="steel" class="visual" />
+        <body name="link1" pos="0 0 0.275">
+          <joint name="q1_shoulder_pan" axis="0 0 1" range="-2.967 2.967" class="arm" />
+          <geom name="link1_collision" type="capsule" fromto="0 0 0 0 0 0.13" size="0.065" material="ivory" mass="2.8" class="collision" />
+          <geom name="gear_0" type="cylinder" size="0.08775000000000001 0.052000000000000005" pos="0 0 0" material="graphite" class="visual" euler="0 0 0" />
+          <geom name="cap_0" type="cylinder" size="0.0728 0.0533" pos="0 0 0" material="steel" class="visual" euler="0 0 0" />
+          <body name="link2" pos="0 0 0.13">
+            <joint name="q2_shoulder_lift" axis="0 1 0" range="-1.92 1.92" class="arm" />
+            <geom name="link2_collision" type="capsule" fromto="0 0 0 0.32 0 0" size="0.046" material="orange" mass="3.8" class="collision" />
+            <geom name="gear_1" type="cylinder" size="0.0621 0.0368" pos="0 0 0" material="graphite" class="visual" euler="1.5707963267948966 0 0" />
+            <geom name="cap_1" type="cylinder" size="0.05152 0.03772" pos="0 0 0" material="steel" class="visual" euler="1.5707963267948966 0 0" />
+            <geom name="fairing_1" type="mesh" mesh="upper" pos="0.16 0 0" material="orange" class="visual" />
+            <geom name="loom_1" type="capsule" fromto="0.045 0 0.062 0.29000000000000004 0 0.062" size="0.008" material="rubber" class="visual" />
+            <body name="link3" pos="0.32 0 0">
+              <joint name="q3_elbow" axis="0 1 0" range="-2.618 2.618" class="arm" />
+              <geom name="link3_collision" type="capsule" fromto="0 0 0 0.28 0 0" size="0.038" material="orange" mass="2.6" class="collision" />
+              <geom name="gear_2" type="cylinder" size="0.051300000000000005 0.0304" pos="0 0 0" material="graphite" class="visual" euler="1.5707963267948966 0 0" />
+              <geom name="cap_2" type="cylinder" size="0.04256 0.031159999999999997" pos="0 0 0" material="steel" class="visual" euler="1.5707963267948966 0 0" />
+              <geom name="fairing_2" type="mesh" mesh="forearm" pos="0.14 0 0" material="orange" class="visual" />
+              <geom name="loom_2" type="capsule" fromto="0.045 0 0.054 0.25 0 0.054" size="0.008" material="rubber" class="visual" />
+              <body name="link4" pos="0.28 0 0">
+                <joint name="q4_wrist1" axis="1 0 0" range="-2.967 2.967" class="arm" />
+                <geom name="link4_collision" type="capsule" fromto="0 0 0 0.09 0 0" size="0.034" material="ivory" mass="0.75" class="collision" />
+                <geom name="gear_3" type="cylinder" size="0.0459 0.027200000000000002" pos="0 0 0" material="graphite" class="visual" euler="0 1.5707963267948966 0" />
+                <geom name="cap_3" type="cylinder" size="0.03808000000000001 0.027880000000000002" pos="0 0 0" material="steel" class="visual" euler="0 1.5707963267948966 0" />
+                <body name="link5" pos="0.09 0 0">
+                  <joint name="q5_wrist2" axis="0 1 0" range="-1.92 1.92" class="arm" />
+                  <geom name="link5_collision" type="capsule" fromto="0 0 0 0.07 0 0" size="0.03" material="ivory" mass="0.55" class="collision" />
+                  <geom name="gear_4" type="cylinder" size="0.0405 0.024" pos="0 0 0" material="graphite" class="visual" euler="1.5707963267948966 0 0" />
+                  <geom name="cap_4" type="cylinder" size="0.033600000000000005 0.024599999999999997" pos="0 0 0" material="steel" class="visual" euler="1.5707963267948966 0 0" />
+                  <body name="link6" pos="0.07 0 0">
+                    <joint name="q6_wrist3" axis="1 0 0" range="-6.283 6.283" class="arm" />
+                    <geom name="link6_collision" type="capsule" fromto="0 0 0 0.05 0 0" size="0.027" material="ivory" mass="0.35" class="collision" />
+                    <geom name="gear_5" type="cylinder" size="0.03645 0.0216" pos="0 0 0" material="graphite" class="visual" euler="0 1.5707963267948966 0" />
+                    <geom name="cap_5" type="cylinder" size="0.030240000000000003 0.02214" pos="0 0 0" material="steel" class="visual" euler="0 1.5707963267948966 0" />
+                    <body name="gripper_base" pos=".05 0 0">
+                      <geom name="gripper_collision" type="box" size="0.03 0.066 0.033" pos="0.02 0 0" material="graphite" class="collision" mass="0.55" />
+                      <geom name="gripper_housing" type="mesh" mesh="gripper" pos=".02 0 0" material="graphite" class="visual" />
+                      <geom name="tool_flange" type="cylinder" size="0.033 0.012" pos="-0.01 0 0" material="steel" class="visual" euler="0 1.57079632679 0" />
+                      <site name="ee_site" pos=".115 0 0" size="0.003" rgba="0 0 0 0" />
+                      <body name="finger_left" pos="0.045 0.02 0">
+                        <joint name="finger_left_j" type="slide" axis="0 1 0" range="0 .035" damping="5" armature="0.002" />
+                        <geom name="finger_metal_left" type="box" size="0.045 0.007 0.016" pos="0.035 0 0" material="steel" class="collision" mass="0.08" />
+                        <geom name="pad_left" type="box" size="0.03 0.004 0.015" pos="0.07 -0.01 0" material="rubber" class="collision" mass="0.01" friction="1.4 .02 .0002" condim="6" solref=".005 1" />
+                      </body>
+                      <body name="finger_right" pos="0.045 -0.02 0">
+                        <joint name="finger_right_j" type="slide" axis="0 -1 0" range="0 .035" damping="5" armature="0.002" />
+                        <geom name="finger_metal_right" type="box" size="0.045 0.007 0.016" pos="0.035 0 0" material="steel" class="collision" mass="0.08" />
+                        <geom name="pad_right" type="box" size="0.03 0.004 0.015" pos="0.07 0.01 0" material="rubber" class="collision" mass="0.01" friction="1.4 .02 .0002" condim="6" solref=".005 1" />
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <contact>
+    <pair geom1="caster_front" geom2="floor" friction=".003 .003 .0001 .0001 .0001" condim="6" />
+    <pair geom1="caster_rear" geom2="floor" friction=".003 .003 .0001 .0001 .0001" condim="6" />
+    <exclude body1="link4" body2="link6" />
+    <exclude body1="link5" body2="gripper_base" />
+    <exclude body1="link6" body2="finger_left" />
+    <exclude body1="link6" body2="finger_right" />
+    <exclude body1="base_link" body2="table_pick"/>
+    <exclude body1="base_link" body2="table_place"/>
+  </contact>
+  <actuator>
+    <motor name="tau_L" joint="wheel_left_j" ctrlrange="-12 12" forcerange="-12 12" />
+    <motor name="tau_R" joint="wheel_right_j" ctrlrange="-12 12" forcerange="-12 12" />
+    <motor name="tau_1" joint="q1_shoulder_pan" ctrlrange="-70 70" forcerange="-70 70" />
+    <motor name="tau_2" joint="q2_shoulder_lift" ctrlrange="-70 70" forcerange="-70 70" />
+    <motor name="tau_3" joint="q3_elbow" ctrlrange="-55 55" forcerange="-55 55" />
+    <motor name="tau_4" joint="q4_wrist1" ctrlrange="-18 18" forcerange="-18 18" />
+    <motor name="tau_5" joint="q5_wrist2" ctrlrange="-18 18" forcerange="-18 18" />
+    <motor name="tau_6" joint="q6_wrist3" ctrlrange="-12 12" forcerange="-12 12" />
+    <position name="gripper_left" joint="finger_left_j" kp="1000" kv="20" ctrlrange="0 .035" forcerange="-30 30" />
+    <position name="gripper_right" joint="finger_right_j" kp="1000" kv="20" ctrlrange="0 .035" forcerange="-30 30" />
+  </actuator>
+  <sensor>
+    <jointpos name="q1_shoulder_pan_position" joint="q1_shoulder_pan" />
+    <jointvel name="q1_shoulder_pan_velocity" joint="q1_shoulder_pan" />
+    <jointpos name="q2_shoulder_lift_position" joint="q2_shoulder_lift" />
+    <jointvel name="q2_shoulder_lift_velocity" joint="q2_shoulder_lift" />
+    <jointpos name="q3_elbow_position" joint="q3_elbow" />
+    <jointvel name="q3_elbow_velocity" joint="q3_elbow" />
+    <jointpos name="q4_wrist1_position" joint="q4_wrist1" />
+    <jointvel name="q4_wrist1_velocity" joint="q4_wrist1" />
+    <jointpos name="q5_wrist2_position" joint="q5_wrist2" />
+    <jointvel name="q5_wrist2_velocity" joint="q5_wrist2" />
+    <jointpos name="q6_wrist3_position" joint="q6_wrist3" />
+    <jointvel name="q6_wrist3_velocity" joint="q6_wrist3" />
+    <framepos name="tcp_position" objtype="site" objname="ee_site" />
+    <framequat name="tcp_orientation" objtype="site" objname="ee_site" />
+  </sensor>
+  
+</mujoco>
