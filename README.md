@@ -9,49 +9,48 @@ A physics-based simulation of a differential-drive mobile robot carrying a six-d
 
 The configuration is
 
-\[
+```math
 q=[x,\ y,\ \theta,\ q_1,\ldots,q_6]^T\in\mathbb{R}^9,
-\]
+```
 
-where \((x,y,\theta)\) describes the planar base and \(q_1,\ldots,q_6\) are the manipulator joint angles. Ideal differential-drive rolling prevents instantaneous lateral motion, so the admissible velocity vector is
+where $`(x,y,\theta)`$ describes the planar base and $`q_1,\ldots,q_6`$ are the manipulator joint angles. Ideal differential-drive rolling prevents instantaneous lateral motion, so the admissible velocity vector is
 
-\[
+```math
 \eta=[v,\ \omega,\ \dot q_1,\ldots,\dot q_6]^T\in\mathbb{R}^8.
-\]
+```
 
-The velocity basis \(S(\theta)\) imposes the rolling constraint directly:
+The velocity basis $`S(\theta)`$ imposes the rolling constraint directly:
 
-\[
+```math
 \dot q=S(\theta)\eta,\qquad
 \ddot q=S(\theta)\dot\eta+\dot S(\theta)\eta.
-\]
+```
 
-The \(\dot S\eta\) term is important during turning: even with constant forward and yaw speeds, the base accelerates in world coordinates as its heading changes.
+The $`\dot S\eta`$ term is important during turning: even with constant forward and yaw speeds, the base accelerates in world coordinates as its heading changes.
 
 ## 2. Coupled reduced dynamics
 
 Starting with the full constrained dynamics,
 
-\[
-M(q)\ddot q+C(q,\dot q)\dot q+G(q)
-=B(q)u+A(q)^T\lambda_c,
-\]
+```math
+M(q)\ddot q+C(q,\dot q)\dot q+G(q)=B(q)u+A(q)^T\lambda_c,
+```
 
 projecting into the admissible velocity basis eliminates ideal lateral constraint reactions:
 
-\[
+```math
 \boxed{\bar M(q)\dot\eta+b(q,\eta)=\bar B(q)u}
-\]
+```
 
 with
 
-\[
+```math
 \bar M=S^TMS,\qquad
 b=S^T\left(C\dot q+G+M\dot S\eta\right),\qquad
 \bar B=S^TB.
-\]
+```
 
-The reduced inertia \(\bar M\in\mathbb R^{8\times8}\) includes base–arm coupling. Consequently, accelerating the arm can require wheel torque even if the desired base acceleration is zero.
+The reduced inertia $`\bar M\in\mathbb{R}^{8\times8}`$ includes base–arm coupling. Consequently, accelerating the arm can require wheel torque even if the desired base acceleration is zero.
 
 The MuJoCo model constructs the reduced mass matrix and bias from the simulator's full dynamics and an admissible velocity basis that also maps wheel speeds. The implementation checks positive definiteness of the reduced mass matrix and rank of the actuator mapping.
 
@@ -59,17 +58,17 @@ The MuJoCo model constructs the reduced mass matrix and bias from the simulator'
 
 The controlled task is the end-effector's world-frame position and orientation. A consistent hybrid twist uses world-frame linear velocity and tool-frame angular velocity:
 
-\[
-V_E=\bar J(q)\eta,\qquad \bar J\in\mathbb R^{6\times8}.
-\]
+```math
+V_E=\bar J(q)\eta,\qquad \bar J\in\mathbb{R}^{6\times8}.
+```
 
 The controller constructs desired translational and rotational accelerations from the reference pose, twist, acceleration, and measured errors. It compensates for Jacobian variation:
 
-\[
+```math
 \dot V_E=\bar J\dot\eta+\dot{\bar J}\eta,
 \qquad
-b_t=a^*_{task}-\dot{\bar J}\eta.
-\]
+b_t=a^{*}_{\mathrm{task}}-\dot{\bar J}\eta.
+```
 
 Orientation error is calculated from rotation matrices rather than subtracting Euler angles. The implementation estimates Jacobian variation by finite differences along admissible motion.
 
@@ -77,15 +76,13 @@ Orientation error is calculated from rotation matrices rather than subtracting E
 
 When the task Jacobian has full row rank, the mass-weighted allocation is
 
-\[
-\bar J_M^\#=\bar M^{-1}\bar J^T
-\left(\bar J\bar M^{-1}\bar J^T\right)^{-1},
-\]
+```math
+\bar J_M^{\#}=\bar M^{-1}\bar J^T\left(\bar J\bar M^{-1}\bar J^T\right)^{-1},
+```
 
-\[
-\dot\eta_{nom}=\bar J_M^\# b_t+
-\left(I-\bar J_M^\#\bar J\right)z.
-\]
+```math
+\dot\eta_{\mathrm{nom}}=\bar J_M^{\#}\, b_t+\left(I-\bar J_M^{\#}\bar J\right)z.
+```
 
 The primary term tracks the end effector; the secondary term expresses preferred internal motion. The implementation uses a normalized, damped version of this allocation, monitors a normalized singular-value indicator, and includes secondary damping and bounded joint-limit repulsion. Near rank loss, the damped inverse is an approximation rather than an exact nullspace projector; hard task priorities are handled separately by the constrained optimizer.
 
@@ -103,9 +100,9 @@ Higher-priority achieved outputs are retained as equalities for subsequent optim
 
 After optimization, requested actuator torques follow from inverse dynamics:
 
-\[
-\boxed{u=\bar B^{-1}(\bar M\dot\eta+b).}
-\]
+```math
+\boxed{u=\bar B^{-1}\left(\bar M\dot\eta+b\right)}
+```
 
 The controller checks the inverse-dynamics residual and rejects commands outside configured torque bounds. OSQP is used when available, with a SciPy SLSQP fallback.
 
@@ -134,6 +131,4 @@ After grasp confirmation, an additional payload model contributes mass and inert
 
 ## 7. Further development
 
-Potential extensions include collision-aware waypoint generation, explicit wheel–ground traction constraints, online payload identification, benchmarking under model uncertainty, . These are future directions, not claims about the current implementation.
-
-
+Potential extensions include collision-aware waypoint generation, explicit wheel–ground traction constraints, online payload identification, and benchmarking under model uncertainty. These are future directions, not claims about the current implementation.
